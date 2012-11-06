@@ -1,0 +1,21 @@
+.facebooky 
+{
+    border: 1px solid #BDC7D8;
+    font-family: 'lucida grande',tahoma,verdana,arial,sans-serif;
+    min-height: 22px;
+    font-size: 13px;
+    color: #333;
+    -moz-box-shadow:    0px 0px 0px 0px;
+    -webkit-box-shadow: 0px 0px 0px 0px;
+    box-shadow:         0px 0px 0px 0px;
+}
+.facebooky .del-highlight {
+    background: #FFBABA !important;
+}
+.facebooky div.item
+{
+    border: 0;
+    color: #333;
+    margin: 2px 2px;
+    background: #dfe3ee;
+}
