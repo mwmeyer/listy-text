@@ -1,7 +1,5 @@
-#Listy-Text
-###A JavaScript plugin to make gathering lists of data with text inputs more user friendly and intuitive.
-
-See the project page for examples and usage. 
+##Listy-Text
+Listy-Text is a JavaScript plugin to make gathering lists of data with text inputs more user friendly and intuitive. It relies on Jquery. See the project page for examples and usage. 
 
 ##Author
 - Email: matthewwilliammeyer@gmail.com
