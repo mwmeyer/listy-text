@@ -1,5 +1,5 @@
 #Listy-Text
-##A JavaScript plugin to make gathering lists of data with text inputs more user friendly and intuitive.
+###A JavaScript plugin to make gathering lists of data with text inputs more user friendly and intuitive.
 
 See the project page for examples and usage. 
 
