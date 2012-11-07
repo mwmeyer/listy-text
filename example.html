@@ -35,7 +35,7 @@ pre {
 
         <ul class="listy-text">
     	<li class="listy-text-box">
-    	  <input class="text-value" type="text" />
+    	  <input class="text-value" type="text" placeholder="Seperate list items with comma " width="200px"/>
           <input name="csv-format" type="hidden" />
     	</li>
     	</ul>
@@ -74,6 +74,7 @@ pre {
 
 <script>
 $(function(){
+    $(".listy-text").listy(".text-value");
     $('button[type="submit"]').click(function(e){
         e.preventDefault();
 
