@@ -75,17 +75,20 @@ pre {
 <script>
 $(function(){
     $(".listy-text").listy(".text-value");
+    $(".listy-text").bind("change",function(){
+      $('button[type="submit"]').trigger("click")
+    });
     $('button[type="submit"]').click(function(e){
         e.preventDefault();
-
+        var val = $(".listy-text").listyVal();
         if ($('input[name="format"][value="csv"]').is(':checked')) {
-            $('#listy-data').text($(this).parent().find('input[name="csv-format"]').val().substring(1));
+            $('#listy-data').text( val.join() );
         }
         else if ($('input[name="format"][value="individual"]').is(':checked')){
             $('#listy-data').text('');
-            $('form .individual-format').each(function(){
-                $('#listy-data').append($(this).val() + '<br>');
-            });
+            for( var i = 0 ; i < val.length ; i++ ){
+              $('#listy-data').append( val[i] + '<br>');
+            }
         }
     });
 });

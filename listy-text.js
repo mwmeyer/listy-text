@@ -8,40 +8,59 @@
  */
 (function(){
   var count = 1 ;
-  function RemoveItem(id) {
-    var remove = ',' + $('#' + id).find('input[name='+id+']').val();
-    var new_csv_data = $('#' + id).parent().find('input[name="csv-format"]').val().replace(new RegExp(remove, 'g'),'');
-    $('#' + id).parent().find('input[name="csv-format"]').val(new_csv_data);
-    $('#' + id).remove();
+  function RemoveItem() {
+    var li = $(this).parent().parent();
+    var remove = ',' + li.find('input').val();
+    var ul = li.parent();
+    li.remove();
+    if( ul.find("div.item").length < 1 ){
+      var tbox = ul.find("input[type!=hidden]") ;
+      var orgph = tbox.attr('d-placeholder');
+      if( orgph ){
+        tbox.attr("placeholder",orgph);
+      }
+    }
+    ul.trigger("change")
   }
 
   function make_listy(tbox){
-    tbox.attr('placeholder', '');
-
-    // add item as box
-    console.log( tbox )
-    tbox.closest('li').before($('<li id="list-item-listy' + count + '"><div class="item">' 
-                                + tbox.val() + ' <a href="javascript:RemoveItem(\'list-item-listy' 
-                                + count 
-                                + '\');">x</a></div><input type="hidden" class="individual-format" name="list-item-listy' 
+    var orgph = tbox.attr('placeholder')
+    if( orgph ){
+      tbox.attr('placeholder','')
+      tbox.attr('d-placeholder',  orgph );
+    }
+   
+    var val = $.trim( tbox.val() );
+    if( val ){
+      // add item as box
+      tbox.closest('li').before($('<li id="list-item-listy' + count + '"><div class="item">' 
+                                + tbox.val() + ' <a href="javascript:void(0);">x</a></div><input type="hidden" class="individual-format" name="list-item-listy' 
                                 + count + '" value="' + tbox.val() + '"></li>'));
 
-    // store data in a hidden input
-    var csv_data = tbox.next('input[name="csv-format"]').val() + ','+ tbox.val();
-    tbox.next('input[name="csv-format"]').val(csv_data)
+    }
 
     tbox.val('');
     count++;
     
     return false;
   }
-  $.fn.listy = function( valEl ){
+
+  $.fn.listyVal = function(){
     var me = $(this);
-    me.find( valEl ).change(function(){
+    var items = me.find("li > .individual-format");
+    var results = [] ;
+    for( var i = 0 ; i< items.length ; i++ ){
+      results.push( $( items[i] ).val() );
+    }
+    return results ;
+  }
+  $.fn.listy = function( ){
+    var me = $(this);
+    me.find( ".text-value" ).change(function(){
+      me.trigger("change");
       return make_listy( $(this) );
     });
-    // on unix or linux system , not-english IME will not been detected unless bind "input" or "propertychange" event but not "keydown"
-    me.find( valEl )[ $.browser ? "propertychange" : "input"](function(e) {
+    me.find( ".text-value" ).keydown(function(e) {
       var tbox = $(this);
       // remove deletion highlight 
       if (e.keyCode != 8 && $('li:nth-last-child(2)' , me ).children('.item').hasClass('del-highlight')) {
@@ -55,14 +74,12 @@
       }
       else if (e.keyCode == 8)  {  // if backspace
         if (tbox.val().length < 1) {  // if its been highligheted, delete the item
-          if ($(this).closest('ul').find('li:nth-last-child(2)').children('.item').hasClass('del-highlight')){
-            var remove = ',' + $(this).closest('ul').find('li:nth-last-child(2)').children('.individual-format').val();
-            var new_csv_data = $(this).next('input[name="csv-format"]').val().replace(new RegExp(remove, 'g'),'');
-            $(this).next('input[name="csv-format"]').val(new_csv_data);
-            $(this).closest('ul').find('li:nth-last-child(2)').remove();
+          var item = $(this).closest('ul').find('li:nth-last-child(2)').children('.item');
+          if ( item.hasClass('del-highlight') ){
+            RemoveItem.call( item.find("a") );
           }
           else {  // add highlight
-            $(this).closest('ul').find('li:nth-last-child(2)').children('.item').addClass('del-highlight');
+            item.addClass('del-highlight');
           }
         }
       }
@@ -74,7 +91,8 @@
       $('input.text-value', this).focus();
       $(this).addClass('listy-outline');
     });
-   
+
+    me.delegate("a","click",RemoveItem);
     me.focusout(function() {
       if ($(this).hasClass('listy-outline')) {
         $(this).removeClass('listy-outline');
