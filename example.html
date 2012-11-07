@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+<script src="listy-text.js" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="listy-text.css">
+<link rel="stylesheet" type="text/css" href="themes/bootstrappy.css">
+<link rel="stylesheet" type="text/css" href="themes/facebooky.css">
+
+<style>
+body {
+    width: 50%;
+    font-family: arial;
+}
+.demo {
+    border: 1px solid #C0C0C0;
+    border-radius: 5px;
+    padding: 5px;
+}
+pre {
+    font-size: 15px;
+    background-color: whiteSmoke;
+}
+</style>
+
+</head>
+<body>
+
+        <div class="demo">
+        <h2>Listy Input:</h2>
+
+        <p>Seperate list items with comma.</p>
+
+        <form>
+
+        <ul class="listy-text">
+    	<li class="listy-text-box">
+    	  <input class="text-value" type="text" />
+          <input name="csv-format" type="hidden" />
+    	</li>
+    	</ul>
+
+        <button type="submit">Get Data</button>
+        <input type="radio" name="format" value="csv" checked="checked"> CSV Format
+        <input type="radio" name="format" value="individual"> Individual Format
+        </form>
+
+        <h2>Listy Data:</h2>
+
+        <pre id="listy-data"></pre>
+
+        </div>
+
+        <h2>Themes</h2>
+
+        <h3>Bootstrappy</h3>
+
+        <ul class="bootstrappy input-large listy-text">
+        <li class="listy-text-box">
+          <input class="text-value" type="text" />
+          <input name="csv-format" type="hidden" />
+        </li>
+        </ul>
+
+        <h3>Facebooky</h3>
+
+        <ul class="facebooky input-large listy-text">
+        <li class="listy-text-box">
+          <input class="text-value" type="text" />
+          <input name="csv-format" type="hidden" />
+        </li>
+        </ul>
+
+
+<script>
+$(function(){
+    $('button[type="submit"]').click(function(e){
+        e.preventDefault();
+
+        if ($('input[name="format"][value="csv"]').is(':checked')) {
+            $('#listy-data').text($(this).parent().find('input[name="csv-format"]').val().substring(1));
+        }
+        else if ($('input[name="format"][value="individual"]').is(':checked')){
+            $('#listy-data').text('');
+            $('form .individual-format').each(function(){
+                $('#listy-data').append($(this).val() + '<br>');
+            });
+        }
+    });
+});
+</script>
+</body>
+</html>
