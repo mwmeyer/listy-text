@@ -35,8 +35,7 @@ pre {
 
         <ul class="listy-text">
     	<li class="listy-text-box">
-    	  <input class="text-value" type="text" placeholder="Seperate list items with comma " width="200px"/>
-          <input name="csv-format" type="hidden" />
+    	  <input class="text-value" type="text"/>
     	</li>
     	</ul>
 
@@ -58,7 +57,6 @@ pre {
         <ul class="bootstrappy input-large listy-text">
         <li class="listy-text-box">
           <input class="text-value" type="text" />
-          <input name="csv-format" type="hidden" />
         </li>
         </ul>
 
@@ -67,7 +65,6 @@ pre {
         <ul class="facebooky input-large listy-text">
         <li class="listy-text-box">
           <input class="text-value" type="text" />
-          <input name="csv-format" type="hidden" />
         </li>
         </ul>
 
@@ -75,9 +72,7 @@ pre {
 <script>
 $(function(){
     $(".listy-text").listy(".text-value");
-    $(".listy-text").bind("change",function(){
-      $('button[type="submit"]').trigger("click")
-    });
+
     $('button[type="submit"]').click(function(e){
         e.preventDefault();
         var val = $(".listy-text").listyVal();
