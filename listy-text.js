@@ -54,10 +54,9 @@
   }
   $.fn.listy = function( ){
     var me = $(this);
+    var classList = me.attr('class').split(/\s+/);
     me.wrap('<li class="listy-text-li" />');
     me.parent().wrap('<ul class="listy-text-ul" />');
-    alert(me.parent().parent().html());
-    var classList = me.attr('class').split(/\s+/);
 
     for (var i = 0; i < classList.length; i++) {
         if (themes.indexOf(classList[i]) > -1) {
