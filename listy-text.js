@@ -1,10 +1,7 @@
 /*!
- * jQuery listy-test plugin 
+ * jQuery Listy-Text Plugin 
  * http://mwmnj.github.com/listy-text/
- *
- * Copyright 2011,Matt Meyer
- * Dual licensed under the MIT licenses.
- * Date Wed Nov 07 10:25:29 2012 
+ * License: http://mwmeyer.mit-license.org
  */
 (function(){
 
@@ -17,20 +14,11 @@
     li.remove();
     if( ul.find("div.item").length < 1 ){
       var tbox = ul.find("input[type!=hidden]") ;
-      var orgph = tbox.attr('d-placeholder');
-      if( orgph ){
-        tbox.attr("placeholder",orgph);
-      }
     }
     ul.trigger("change")
   }
 
   function make_listy(tbox){
-    var orgph = tbox.attr('placeholder')
-    if( orgph ){
-      tbox.attr('placeholder','')
-      tbox.attr('d-placeholder',  orgph );
-    }
    
     var val = $.trim( tbox.val() );
     if( val ){
@@ -55,9 +43,9 @@
   $.fn.listy = function( ){
     $(this).each(function( i , me  ){
       me = $(me);
-      var classList = me.attr('class').replace(/listy-text/g,"").split(/\s+/);
+      var classList = me.attr('class').replace(/listy-text/g,"").split(/\s+/);  // get all classes on input, ignore listy-text
       me.wrap('<li class="listy-text-li" />');
-      me.parent().wrap('<ul class="listy-text-ul '+ classList.join(" ") +'" />');
+      me.parent().wrap('<ul class="listy-text-ul" />');
 
       for (var i = 0; i < classList.length; i++) {
           if (themes.indexOf(classList[i]) > -1) {

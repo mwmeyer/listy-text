@@ -4,8 +4,6 @@
 <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
 <script src="listy-text.js" type="text/javascript"></script>
 <link rel="stylesheet" type="text/css" href="listy-text.css">
-<link rel="stylesheet" type="text/css" href="themes/bootstrappy.css">
-<link rel="stylesheet" type="text/css" href="themes/facebooky.css">
 
 <style>
 body {
@@ -33,7 +31,7 @@ pre {
 
         <form>
 
-        <input class="listy-text" type="text" id="example1"/>
+        <input class="listy-text" type="text"/>
 
         <button type="submit">Get Data</button>
         <input type="radio" name="format" value="csv" checked="checked"> CSV Format
@@ -64,7 +62,7 @@ $(function(){
 
     $('button[type="submit"]').click(function(e){
         e.preventDefault();
-        var val = $("#example1").listyVal();
+        var val = $("form input.listy-text").listyVal();
         if ($('input[name="format"][value="csv"]').is(':checked')) {
             $('#listy-data').text( val.join() );
         }
