@@ -7,10 +7,12 @@
  * Date Wed Nov 07 10:25:29 2012 
  */
 (function(){
+
+  themes = ['facebooky', 'bootstrappy'];
   var count = 1 ;
+
   function RemoveItem() {
     var li = $(this).parent().parent();
-    var remove = ',' + li.find('input').val();
     var ul = li.parent();
     li.remove();
     if( ul.find("div.item").length < 1 ){
@@ -33,9 +35,8 @@
     var val = $.trim( tbox.val() );
     if( val ){
       // add item as box
-      tbox.closest('li').before($('<li id="list-item-listy' + count + '"><div class="item">' 
-                                + tbox.val() + ' <a href="javascript:void(0);">x</a></div><input type="hidden" class="individual-format" name="list-item-listy' 
-                                + count + '" value="' + tbox.val() + '"></li>'));
+      tbox.closest('li').before($('<li id="list-item-listy' + count + '"><div value="'+tbox.val()+'" class="item">' 
+                                + tbox.val() + ' <a href="javascript:void(0);">x</a></div></li>'));
 
     }
 
@@ -46,25 +47,33 @@
   }
 
   $.fn.listyVal = function(){
-    var me = $(this);
-    var items = me.find("li > .individual-format");
+    var items = $(".item");
     var results = [] ;
-    for( var i = 0 ; i< items.length ; i++ ){
-      results.push( $( items[i] ).val() );
-    }
-    return results ;
+    items.each(function() { results.push($(this).attr('value')); });
+    return results;
   }
   $.fn.listy = function( ){
     var me = $(this);
-    me.find( ".text-value" ).change(function(){
-      me.trigger("change");
+    var classList = me.attr('class').split(/\s+/);
+    me.wrap('<li class="listy-text-li" />');
+    me.parent().wrap('<ul class="listy-text-ul" />');
+
+    for (var i = 0; i < classList.length; i++) {
+        if (themes.indexOf(classList[i]) > -1) {
+          me.removeClass(classList[i]);
+          me.parent().parent().addClass(classList[i]);
+        }
+    }
+
+    $( me ).change(function(){
+      me.parent().parent().trigger("change");
       return make_listy( $(this) );
     });
-    me.find( ".text-value" ).keydown(function(e) {
+    $( me ).keydown(function(e) {
       var tbox = $(this);
       // remove deletion highlight 
-      if (e.keyCode != 8 && $('li:nth-last-child(2)' , me ).children('.item').hasClass('del-highlight')) {
-        $('li:nth-last-child(2)' , me ).children('.item').removeClass('del-highlight');
+      if (e.keyCode != 8 && $('li:nth-last-child(2)' , me.parent().parent() ).children('.item').hasClass('del-highlight')) {
+        $('li:nth-last-child(2)' , me.parent().parent() ).children('.item').removeClass('del-highlight');
       }
    
       if (e.keyCode == 188) {  // if comma
@@ -87,13 +96,13 @@
     });
     
     //  clicking anywhere on the pseudo-textbox focuses on text input and adds an outline
-    me.click(function() {
-      $('input.text-value', this).focus();
+    me.parent().parent().click(function() {
+      $('input.listy-text', this).focus();
       $(this).addClass('listy-outline');
     });
 
-    me.delegate("a","click",RemoveItem);
-    me.focusout(function() {
+    me.parent().parent().delegate("a","click",RemoveItem);
+    me.parent().parent().focusout(function() {
       if ($(this).hasClass('listy-outline')) {
         $(this).removeClass('listy-outline');
       }

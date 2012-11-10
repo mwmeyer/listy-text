@@ -33,16 +33,12 @@ pre {
 
         <form>
 
-        <ul class="listy-text">
-    	<li class="listy-text-box">
-    	  <input class="text-value" type="text" placeholder="Seperate list items with comma " width="200px"/>
-          <input name="csv-format" type="hidden" />
-    	</li>
-    	</ul>
+        <input class="listy-text" type="text"/>
 
         <button type="submit">Get Data</button>
         <input type="radio" name="format" value="csv" checked="checked"> CSV Format
         <input type="radio" name="format" value="individual"> Individual Format
+
         </form>
 
         <h2>Listy Data:</h2>
@@ -55,32 +51,20 @@ pre {
 
         <h3>Bootstrappy</h3>
 
-        <ul class="bootstrappy input-large listy-text">
-        <li class="listy-text-box">
-          <input class="text-value" type="text" />
-          <input name="csv-format" type="hidden" />
-        </li>
-        </ul>
+        <input class="bootstrappy listy-text" type="text" />
 
         <h3>Facebooky</h3>
 
-        <ul class="facebooky input-large listy-text">
-        <li class="listy-text-box">
-          <input class="text-value" type="text" />
-          <input name="csv-format" type="hidden" />
-        </li>
-        </ul>
+        <input class="facebooky listy-text" type="text" />
 
 
 <script>
 $(function(){
-    $(".listy-text").listy(".text-value");
-    $(".listy-text").bind("change",function(){
-      $('button[type="submit"]').trigger("click")
-    });
+    $(".listy-text").listy();
+
     $('button[type="submit"]').click(function(e){
         e.preventDefault();
-        var val = $(".listy-text").listyVal();
+        var val = $(".listy-text-ul").listyVal();
         if ($('input[name="format"][value="csv"]').is(':checked')) {
             $('#listy-data').text( val.join() );
         }
