@@ -1,4 +1,4 @@
-.listy-text
+.listy-text-ul
 {
     line-height: 20px;
     min-height: 25px;
@@ -17,12 +17,12 @@
 {
     border: 1px solid #969696;
 }
-.listy-text li
+.listy-text-ul li
 {
     float: left;
     line-height: 18px;
 }
-.listy-text li input
+.listy-text-ul li input
 {
     color: black;
     border: none 0px;
@@ -37,7 +37,7 @@
     -moz-box-shadow: none;
     box-shadow: none;
 }
-.listy-text li input:focus
+.listy-text-ul li input:focus
 {
     outline:0;
     border-color: 0;
@@ -51,7 +51,7 @@
 .del-highlight {
     background: whiteSmoke;
 }
-.listy-text div.item
+.listy-text-ul div.item
 {
     border: 1px solid #ccc;
     margin: 3px 2px;
@@ -59,7 +59,7 @@
     height: 90%;
     position: relative;
 }
-.listy-text div.item a
+.listy-text-ul div.item a
 {
     position: relative;
     text-decoration: none;
@@ -71,7 +71,7 @@
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: inherit;
 }
-.listy-text div.item a:hover
+.listy-text-ul div.item a:hover
 {
 color: black;
 text-decoration: none;
