@@ -33,7 +33,7 @@ pre {
 
         <form>
 
-        <input class="listy-text" type="text"/>
+        <input class="listy-text" type="text" id="example1"/>
 
         <button type="submit">Get Data</button>
         <input type="radio" name="format" value="csv" checked="checked"> CSV Format
@@ -64,7 +64,7 @@ $(function(){
 
     $('button[type="submit"]').click(function(e){
         e.preventDefault();
-        var val = $(".listy-text-ul").listyVal();
+        var val = $("#example1").listyVal();
         if ($('input[name="format"][value="csv"]').is(':checked')) {
             $('#listy-data').text( val.join() );
         }
