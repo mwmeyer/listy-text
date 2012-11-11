@@ -3,9 +3,9 @@
  * http://mwmnj.github.com/listy-text/
  * License: http://mwmeyer.mit-license.org
  */
-(function(){
+(function($){
 
-  themes = ['facebooky', 'bootstrappy'];
+  var themes = ['facebooky', 'bootstrappy'];
   var count = 1 ;
 
   function RemoveItem() {
@@ -41,28 +41,28 @@
     return results;
   }
   $.fn.listy = function( ){
-    $(this).each(function( i , me  ){
-      me = $(me);
-      var classList = me.attr('class').replace(/listy-text/g,"").split(/\s+/);  // get all classes on input, ignore listy-text
-      me.wrap('<li class="listy-text-li" />');
-      me.parent().wrap('<ul class="listy-text-ul" />');
+    this.each(function( i , input  ){
+      $input = $(input);
+      var classList = $input.attr('class').replace(/listy-text/g,"").split(/\s+/);  // get all classes on input, ignore listy-text
+      $input.wrap('<li class="listy-text-li" />');
+      $input.parent().wrap('<ul class="listy-text-ul" />');
 
       for (var i = 0; i < classList.length; i++) {
           if (themes.indexOf(classList[i]) > -1) {
-            me.removeClass(classList[i]);
-            me.parent().parent().addClass(classList[i]);
+            $input.removeClass(classList[i]);
+            $input.parent().parent().addClass(classList[i]);
           }
       }
 
-      $( me ).change(function(){
-        me.parent().parent().trigger("change");
+      $input.change(function(){
+        $input.parent().parent().trigger("change");
         return make_listy( $(this) );
       });
-      $( me ).keydown(function(e) {
+      $input.keydown(function(e) {
         var tbox = $(this);
         // remove deletion highlight 
-        if (e.keyCode != 8 && $('li:nth-last-child(2)' , me.parent().parent() ).children('.item').hasClass('del-highlight')) {
-          $('li:nth-last-child(2)' , me.parent().parent() ).children('.item').removeClass('del-highlight');
+        if (e.keyCode != 8 && $('li:nth-last-child(2)' , $input.parent().parent() ).children('.item').hasClass('del-highlight')) {
+          $('li:nth-last-child(2)' , $input.parent().parent() ).children('.item').removeClass('del-highlight');
         }
      
         if (e.keyCode == 188) {  // if comma
@@ -85,17 +85,19 @@
       });
       
       //  clicking anywhere on the pseudo-textbox focuses on text input and adds an outline
-      me.parent().parent().click(function() {
+      $input.parent().parent().click(function() {
         $('input.listy-text', this).focus();
         $(this).addClass('listy-outline');
       });
 
-      me.parent().parent().delegate("a","click",RemoveItem);
-      me.parent().parent().focusout(function() {
+      $input.parent().parent().delegate("a","click",RemoveItem);
+      $input.parent().parent().focusout(function() {
         if ($(this).hasClass('listy-outline')) {
           $(this).removeClass('listy-outline');
         }
       });
     });
+
+    return this;
   }
 }(jQuery));
