@@ -5,8 +5,6 @@
 <script src="listy-text/listy-text.js" type="text/javascript"></script>
 <link href='http://fonts.googleapis.com/css?family=Yesteryear' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" type="text/css" href="listy-text/listy-text.css">
-<link rel="stylesheet" type="text/css" href="listy-text/themes/bootstrappy.css">
-<link rel="stylesheet" type="text/css" href="listy-text/themes/facebooky.css">
 <link rel="stylesheet" type="text/css" href="http://twitter.github.com/bootstrap/1.4.0/bootstrap.min.css">
 
 <style>
@@ -66,7 +64,7 @@ ul, li {
         
         <h1>Listy-Text</h1>
 
-        <h3 style="text-align: center;">A JavaScript plugin to make gathering lists of data with text inputs more user friendly and intuitive.</h3>
+        <h3 style="text-align: center;">A jQuery plugin to make gathering lists of data with text inputs more user friendly and intuitive.</h3>
 
         <div class="section">
         <h2>Example</h2>
@@ -74,17 +72,13 @@ ul, li {
         <h3>Try me:</h3>
 
         <form>
-        <ul class="input-xxlarge listy-text">
-      <li class="listy-text-box">
-        <input placeholder="Seperate list items with comma" class="text-value" type="text" />
-          <input name="csv-format" type="hidden" />
-      </li>
-      </ul>
 
-        <br>
-        <button type="submit" class="btn">Get Data</button>
+        <input class="listy-text" type="text"/><br>
+
+        <button class="btn" type="submit">Get Data</button>
         <input type="radio" name="format" value="csv" checked="checked"> CSV Format
         <input type="radio" name="format" value="individual"> Individual Format
+
         </form>
 
         <h3>Listy data:</h3>
@@ -106,12 +100,7 @@ ul, li {
 
         <h3>Bootstrappy</h3>
 
-        <ul class="bootstrappy input-large listy-text">
-        <li class="listy-text-box">
-          <input class="text-value" type="text" />
-          <input name="csv-format" type="hidden" />
-        </li>
-        </ul>
+        <input class="bootstrappy listy-text" type="text" />
 
         </div>
 
@@ -119,12 +108,7 @@ ul, li {
 
         <h3>Facebooky</h3>
 
-        <ul class="facebooky input-large listy-text">
-        <li class="listy-text-box">
-          <input class="text-value" type="text" />
-          <input name="csv-format" type="hidden" />
-        </li>
-        </ul>
+        <input class="facebooky listy-text" type="text" />
 
         </div>
 
@@ -138,32 +122,29 @@ ul, li {
         <code>&lt;script src="listy-text.js" type="text/javascript"&gt;&lt;/script&gt;</code><br>
         <code>&lt;link rel="stylesheet" type="text/css" href="listy-text.css"&gt;</code><br><br>
 
-        <p>2. Add the Listy-Text input html:</p>
+        <p>2. Add an input element and call the .listy() function on it:</p>
 
 <pre class="span6">
-&lt;ul class="listy-text"&gt;
-&lt;li class="listy-text-box"&gt;
-  &lt;input class="text-value" type="text" /&gt;
-  &lt;input name="csv-format" type="hidden" /&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
+&lt;input class="listy-text" type="text" /&gt;
+&lt;script&gt;
+$(".listy-text").listy();
+&lt;/script&gt;
 </pre>
 
 <ul>
-    <li>To specify a width for the input, add a size class such as input-large (bootstrap) to the parent ul element.</li>
-    <li>To use one of the included themes above, include their css files and add either the bootstrappy or facebooky class to the parent ul element.</li>
+    <li>Note that the class of the input doesn't have to be 'listy-text'. You can call the .listy() function using any css selector.</li>
+    <li>To use one of the included themes shown above, simply add the bootstrappy or facebooky class to the input element.</li>
 </ul>
 
-<p>3. Grab the listy-data in one of two available formats:</p>
-<ul>
-    <li>As a single hidden form input with all items (comma seperated) as the value.
-    <br><code>&lt;input name="csv-format" type="hidden" value=",a,b,c"&gt;</code></li>
-    <li>As multiple hidden form inputs for each item entered.
-        <br><code>&lt;input type="hidden" class="individual-format" name="list-item1" value="a"&gt;</code>
-        <br><code>&lt;input type="hidden" class="individual-format" name="list-item1" value="b"&gt;</code>
-        <br><code>&lt;input type="hidden" class="individual-format" name="list-item1" value="c"&gt;</code>
-    </li>
-</ul>
+<p>3. Get the listy-data:</p>
+
+<p>Use the .listyVal() function to get the data for a particular listy-input. Use css selectors to specify.</p>
+
+<pre class="span6">
+&lt;script&gt;
+$("form input .listy-text").listyVal();
+&lt;/script&gt;
+</pre>
 
         </div>
 
@@ -175,29 +156,32 @@ $(function(){
 
     $('input[name="format"]').change(function(){
 
-                if ($('input[name="format"][value="csv"]').is(':checked')) {
-            $('#listy-data').text($(this).parent().find('input[name="csv-format"]').val().substring(1));
+            var val = $("form input.listy-text").listyVal();
+        if ($('input[name="format"][value="csv"]').is(':checked')) {
+            $('#listy-data').text( val.join() );
         }
         else if ($('input[name="format"][value="individual"]').is(':checked')){
             $('#listy-data').text('');
-            $('form .individual-format').each(function(){
-                $('#listy-data').append($(this).val() + '<br>');
-            });
+            for( var i = 0 ; i < val.length ; i++ ){
+              $('#listy-data').append( val[i] + '<br>');
+            }
         }
 
-    });
+        });
+
+    $(".listy-text").listy();
 
     $('button[type="submit"]').click(function(e){
         e.preventDefault();
-
+        var val = $("form input.listy-text").listyVal();
         if ($('input[name="format"][value="csv"]').is(':checked')) {
-            $('#listy-data').text($(this).parent().find('input[name="csv-format"]').val().substring(1));
+            $('#listy-data').text( val.join() );
         }
         else if ($('input[name="format"][value="individual"]').is(':checked')){
             $('#listy-data').text('');
-            $('form .individual-format').each(function(){
-                $('#listy-data').append($(this).val() + '<br>');
-            });
+            for( var i = 0 ; i < val.length ; i++ ){
+              $('#listy-data').append( val[i] + '<br>');
+            }
         }
     });
 });

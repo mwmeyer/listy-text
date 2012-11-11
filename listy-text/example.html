@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+<script src="listy-text.js" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="listy-text.css">
+
+<style>
+body {
+    width: 50%;
+    font-family: arial;
+}
+.demo {
+    border: 1px solid #C0C0C0;
+    border-radius: 5px;
+    padding: 5px;
+}
+pre {
+    font-size: 15px;
+    background-color: whiteSmoke;
+}
+</style>
+
+</head>
+<body>
+
+        <div class="demo">
+        <h2>Listy Input:</h2>
+
+        <p>Seperate list items with comma.</p>
+
+        <form>
+
+        <input class="listy-text" type="text"/>
+
+        <button type="submit">Get Data</button>
+        <input type="radio" name="format" value="csv" checked="checked"> CSV Format
+        <input type="radio" name="format" value="individual"> Individual Format
+
+        </form>
+
+        <h2>Listy Data:</h2>
+
+        <pre id="listy-data"></pre>
+
+        </div>
+
+        <h2>Themes</h2>
+
+        <h3>Bootstrappy</h3>
+
+        <input class="bootstrappy listy-text" type="text" />
+
+        <h3>Facebooky</h3>
+
+        <input class="facebooky listy-text" type="text" />
+
+
+<script>
+$(function(){
+    $(".listy-text").listy();
+
+    $('button[type="submit"]').click(function(e){
+        e.preventDefault();
+        var val = $("form input.listy-text").listyVal();
+        if ($('input[name="format"][value="csv"]').is(':checked')) {
+            $('#listy-data').text( val.join() );
+        }
+        else if ($('input[name="format"][value="individual"]').is(':checked')){
+            $('#listy-data').text('');
+            for( var i = 0 ; i < val.length ; i++ ){
+              $('#listy-data').append( val[i] + '<br>');
+            }
+        }
+    });
+});
+</script>
+</body>
+</html>
