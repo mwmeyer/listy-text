@@ -5,13 +5,13 @@
     padding: 0;
     list-style-type: none;
     overflow: hidden;
-    margin: 0px;
+    margin: 0;
     width: inherit;
     background-color: white;
     border: 1px solid #BFBFBF;
-    -moz-box-shadow:    inset 0px 1px 0px 0px #808080;
-    -webkit-box-shadow: inset 0px 1px 0px 0px #808080;
-    box-shadow:         inset 0px 1px 0px 0px #808080;
+    -moz-box-shadow:    inset 0 1px 0 0 #808080;
+    -webkit-box-shadow: inset 0 1px 0 0 #808080;
+    box-shadow:         inset 0 1px 0 0 #808080;
 }
 .listy-outline
 {
@@ -24,19 +24,19 @@
 }
 .listy-text-ul .listy-text-li input
 {
-    color: black;
-    border: none 0px;
-    padding-left: 2px;
-    padding-bottom: 3px;
-    outline: none;
-    background:none;
-    font-family: inherit;
-    font-size: inherit;
-    margin-bottom: 0;
-    -webkit-box-shadow: none;
-    -moz-box-shadow: none;
-    box-shadow: none;
-    width: auto;
+    color: black !important;
+    border: none 0 !important;
+    padding-left: 2px !important;
+    padding-bottom: 3px !important;
+    outline: none !important;
+    background:none !important;
+    font-family: inherit !important;
+    font-size: inherit !important;
+    margin-bottom: 0 !important;
+    -webkit-box-shadow: none !important;
+    -moz-box-shadow: none !important;
+    box-shadow: none !important;
+    width: auto !important;
 }
 .listy-text-ul li input:focus
 {
@@ -56,7 +56,7 @@
 {
     border: 1px solid #ccc;
     margin: 3px 2px;
-    padding: 0px 4px 0px 4px;
+    padding: 0 4px 0 4px;
     height: 90%;
     position: relative;
 }
@@ -89,9 +89,9 @@ filter: alpha(opacity=40);
     min-height: 22px;
     font-size: 13px;
     color: #333;
-    -moz-box-shadow:    0px 0px 0px 0px;
-    -webkit-box-shadow: 0px 0px 0px 0px;
-    box-shadow:         0px 0px 0px 0px;
+    -moz-box-shadow:    0 0 0 0;
+    -webkit-box-shadow: 0 0 0 0;
+    box-shadow:         0 0 0 0;
 }
 .facebooky .del-highlight {
     background: #FFBABA !important;
