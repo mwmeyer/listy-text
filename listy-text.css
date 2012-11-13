@@ -22,7 +22,7 @@
     float: left;
     line-height: 18px;
 }
-.listy-text-ul li input
+.listy-text-ul .listy-text-li input
 {
     color: black;
     border: none 0px;
@@ -36,6 +36,7 @@
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
     box-shadow: none;
+    width: auto;
 }
 .listy-text-ul li input:focus
 {
@@ -131,7 +132,7 @@ filter: alpha(opacity=40);
     color: #555555;
 }
 .bootstrappy .del-highlight {
-    background: #FCF8E3;
+    background: #F2D8E2;
     border-color: #FBEED5;
 }
 .bootstrappy div.item
