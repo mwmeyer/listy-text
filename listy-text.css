@@ -1,0 +1,141 @@
+.listy-text-ul
+{
+    line-height: 20px;
+    min-height: 25px;
+    padding: 0;
+    list-style-type: none;
+    overflow: hidden;
+    margin: 0;
+    width: inherit;
+    background-color: white;
+    border: 1px solid #BFBFBF;
+    -moz-box-shadow:    inset 0 1px 0 0 #808080;
+    -webkit-box-shadow: inset 0 1px 0 0 #808080;
+    box-shadow:         inset 0 1px 0 0 #808080;
+}
+.listy-outline
+{
+    border: 1px solid #969696;
+}
+.listy-text-ul li
+{
+    float: left;
+    line-height: 18px;
+}
+.listy-text-ul .listy-text-li input
+{
+    color: black !important;
+    border: none 0 !important;
+    padding-left: 2px !important;
+    padding-bottom: 3px !important;
+    outline: none !important;
+    background:none !important;
+    font-family: inherit !important;
+    font-size: inherit !important;
+    margin-bottom: 0 !important;
+    -webkit-box-shadow: none !important;
+    -moz-box-shadow: none !important;
+    box-shadow: none !important;
+    width: auto !important;
+}
+.listy-text-ul li input:focus
+{
+    outline:0;
+    border-color: 0;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
+.del-highlight {
+    background: whiteSmoke;
+}
+.listy-text-ul div.item
+{
+    border: 1px solid #ccc;
+    margin: 3px 2px;
+    padding: 0 4px 0 4px;
+    height: 90%;
+    position: relative;
+}
+.listy-text-ul div.item a
+{
+    position: relative;
+    text-decoration: none;
+    font-weight: bold;
+    color: black;
+    text-shadow: 0 1px 0 white;
+    opacity: 0.2;
+    filter: alpha(opacity=20);
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: inherit;
+}
+.listy-text-ul div.item a:hover
+{
+color: black;
+text-decoration: none;
+cursor: pointer;
+opacity: 0.4;
+filter: alpha(opacity=40);
+}
+
+/*** Facebooky Theme ***/
+.facebooky 
+{
+    border: 1px solid #BDC7D8;
+    font-family: 'lucida grande',tahoma,verdana,arial,sans-serif;
+    min-height: 22px;
+    font-size: 13px;
+    color: #333;
+    -moz-box-shadow:    0 0 0 0;
+    -webkit-box-shadow: 0 0 0 0;
+    box-shadow:         0 0 0 0;
+}
+.facebooky .del-highlight {
+    background: #FFBABA !important;
+}
+.facebooky div.item
+{
+    border: 0;
+    color: #333;
+    margin: 2px 2px;
+    background: #dfe3ee;
+}
+
+/*** Bootstrappy Theme ***/
+.bootstrappy 
+{
+    margin-bottom: 9px;
+    font-size: 14px;
+    line-height: 20px;
+    color: #555555;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+.bootstrappy.listy-outline
+{
+  border-color: rgba(82, 168, 236, 0.8);
+  outline: 0;
+  outline: thin dotted \9;
+  /* IE6-9 */
+
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6);
+     -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6);
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6);
+}
+.bootstrappy li input
+{
+    padding-top: 4px;
+    color: #555555;
+}
+.bootstrappy .del-highlight {
+    background: #F2D8E2;
+    border-color: #FBEED5;
+}
+.bootstrappy div.item
+{
+    border-radius: 5px;
+}
