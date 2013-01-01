@@ -47,6 +47,16 @@
       $input.wrap('<li class="listy-text-li" />');
       $input.parent().wrap('<ul class="listy-text-ul" />');
 
+      //pre populate the listy input
+      if($input.val().length > 0){
+        var default_vals = $input.val().split(',');
+        var dlength = default_vals.length;
+        for (var i = 0; i < dlength; i++) {
+          $input.val(default_vals[i].trim());
+          make_listy( $(this) );
+        }
+      }
+
       for (var i = 0; i < classList.length; i++) {
           if (themes.indexOf(classList[i]) > -1) {
             $input.removeClass(classList[i]);
