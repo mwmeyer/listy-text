@@ -3,7 +3,7 @@
  * http://mwmnj.github.com/listy-text/
  * License: http://mwmeyer.mit-license.org
  */
-(function($){
+(($ => {
 
   var themes = ['facebooky', 'bootstrappy'];
   var count = 1 ;
@@ -110,4 +110,4 @@
 
     return this;
   }
-}(jQuery));
+})(jQuery));
